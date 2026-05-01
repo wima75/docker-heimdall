@@ -3,7 +3,7 @@ name: Build and Publish Docker Image
 # Wann soll das Image gebaut werden? (Hier: Bei jedem Push in den "main" Branch)
 on:
   push:
-    branches: [ "main" ] # Falls dein Hauptbranch "master" heißt, hier "master" eintragen
+    branches: [ "master" ]
   release:
     types: [published] # Baut auch automatisch bei einem neuen Release
 
