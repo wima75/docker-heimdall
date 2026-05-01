@@ -35,12 +35,12 @@ RUN \
   mkdir -p \
     /heimdall && \
   if [ -z ${HEIMDALL_RELEASE+x} ]; then \
-    HEIMDALL_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/Heimdall/releases/latest" \
+    HEIMDALL_RELEASE=$(curl -sX GET "https://api.github.com/repos/wima75/Heimdall/releases/latest" \
     | awk '/tag_name/{print $4;exit}' FS='[""]'); \
   fi && \
   curl -o \
     /tmp/heimdall.tar.gz -L \
-    "https://github.com/linuxserver/Heimdall/archive/${HEIMDALL_RELEASE}.tar.gz" && \
+    "https://github.com/wima75/Heimdall/archive/${HEIMDALL_RELEASE}.tar.gz" && \
   mkdir -p \
     /app/www-tmp && \
   tar xf \
