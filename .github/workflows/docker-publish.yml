@@ -6,6 +6,9 @@ on:
     branches: [ "master" ]
   release:
     types: [published] # Baut auch automatisch bei einem neuen Release
+  schedule:
+    - cron: '17 3 * * 1' # Jeden Montag neu bauen, damit PHP- und Alpine-Updates ins Image kommen
+  workflow_dispatch: # Von Hand starten (Actions → Run workflow)
 
 env:
   REGISTRY: ghcr.io
@@ -34,6 +37,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          # Auch bei schedule/workflow_dispatch das Tag "master" setzen
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=raw,value=master,enable=${{ github.ref == 'refs/heads/master' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
